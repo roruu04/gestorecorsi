@@ -14,12 +14,15 @@ class View(ft.UserControl):
         # graphical elements
         self._title = None
 
+        #dropdown menu a tendina
         self.ddPD = None
         self.ddCodins = None
+        #bottoni
         self.btnPrintCorsiPD = None
         self.btnPrintIscrittiCorsiPD = None
         self.btnPrintIscrittiCodins = None
         self.btnPrintCDSCodins = None
+
 
 
     def load_interface(self):
@@ -37,19 +40,19 @@ class View(ft.UserControl):
         self.btnPrintIscrittiCorsiPD = ft.ElevatedButton(text="Stampa numero iscritto",
                                                  on_click=self._controller.handlePrintIscrittiCorsiPD,
                                                  width=300)
+        row1 = ft.Row([self.ddPD, self.btnPrintCorsiPD, self.btnPrintIscrittiCorsiPD], alignment=ft.alignment.center)
 
-        row1 = ft.Row([self.ddPD, self.btnPrintCorsiPD, self.btnPrintIscrittiCorsiPD])
-
+        #ROW2
         self.ddCodins = ft.Dropdown(label = "Corso", width=200)
-        self._controller.fillddCodins()
+        self._controller.fillddCodins()#le opzioni non le so quindi vanno lette dal database, view lo chiede al controller
         self.btnPrintIscrittiCodins = ft.ElevatedButton(text = "Stampa iscritti al corso",
                                                         on_click = self._controller.handlePrintIscrittiCodins,
                                                  width=300)
         self.btnPrintCDSCodins = ft.ElevatedButton(text = "Stampa CDS afferenti",
                                                    on_click = self._controller.handlePrintCDSCodins,
                                                  width=300)
+        row2 = ft.Row([self.ddCodins, self.btnPrintIscrittiCodins, self.btnPrintCDSCodins], alignment=ft.alignment.center)
 
-        row2 = ft.Row([self.ddCodins, self.btnPrintIscrittiCodins, self.btnPrintCDSCodins])
         self._page.add(row1, row2)
 
         # List View where the reply is printed
